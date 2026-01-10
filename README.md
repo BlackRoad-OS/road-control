@@ -32,8 +32,8 @@ Single-page web application (HTML + CSS + JavaScript) that provides a graphical 
 **Target Environment:**
 - **Host:** alice (192.168.4.49)
 - **Port:** 8083
-- **API:** road-registry-api (lucidia:8080)
-- **Deploy API:** road-deploy (alice:9000)
+- **API:** road-registry-api (lucidia:8090)
+- **Deploy API:** road-deploy (alice:9001)
 
 ---
 
@@ -47,7 +47,7 @@ Single-page web application (HTML + CSS + JavaScript) that provides a graphical 
 └──────────────────────────────────────┘
            ↓             ↓
     road-registry-api  road-deploy
-    (lucidia:8080)     (alice:9000)
+    (lucidia:8090)     (alice:9001)
 ```
 
 ---
@@ -135,7 +135,7 @@ server {
 
     # API proxy (optional - if running on same host)
     location /api/ {
-        proxy_pass http://lucidia:8080/api/;
+        proxy_pass http://lucidia:8090/api/;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
     }
@@ -188,8 +188,8 @@ sudo nginx -s reload
 Edit `public/js/app.js`:
 
 ```javascript
-const API_BASE = 'http://lucidia:8080/api';  // road-registry-api
-const DEPLOY_API = 'http://alice:9000/api';  // road-deploy
+const API_BASE = 'http://lucidia:8090/api';  // road-registry-api
+const DEPLOY_API = 'http://alice:9001/api';  // road-deploy
 ```
 
 ### **Update Frequency**
@@ -348,16 +348,16 @@ http://192.168.4.49:8083
 
 ```javascript
 // Get all domains
-GET http://lucidia:8080/api/domains
+GET http://lucidia:8090/api/domains
 
 // Add domain
-POST http://lucidia:8080/api/domains
+POST http://lucidia:8090/api/domains
 
 // Add DNS record
-POST http://lucidia:8080/api/domains/:domain/records
+POST http://lucidia:8090/api/domains/:domain/records
 
 // Trigger deployment
-POST http://alice:9000/api/deploy
+POST http://alice:9001/api/deploy
 ```
 
 ---

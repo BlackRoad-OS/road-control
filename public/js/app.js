@@ -1,7 +1,7 @@
 // 🖤🛣️ BlackRoad Domain Registry - Control Panel JavaScript
 
-const API_BASE = 'http://lucidia:8080/api';
-const DEPLOY_API = 'http://alice:9000/api';
+const API_BASE = 'http://lucidia:8090/api';
+const DEPLOY_API = 'http://alice:9001/api';
 
 // Tab Navigation
 document.querySelectorAll('.tab').forEach(tab => {
