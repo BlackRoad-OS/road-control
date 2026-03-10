@@ -160,6 +160,78 @@
         </div>
     </div>
 
+    <div class="modal" id="add-record-modal">
+        <div class="modal-content">
+            <h2>Add DNS Record</h2>
+            <form id="add-record-form">
+                <div class="form-group">
+                    <label>Domain</label>
+                    <select name="domain" id="record-domain-select" required>
+                        <option value="">Loading domains...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Record Type</label>
+                    <select name="record_type" required>
+                        <option value="A">A</option>
+                        <option value="AAAA">AAAA</option>
+                        <option value="CNAME">CNAME</option>
+                        <option value="MX">MX</option>
+                        <option value="TXT">TXT</option>
+                        <option value="NS">NS</option>
+                        <option value="SRV">SRV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="@ or subdomain" required>
+                </div>
+                <div class="form-group">
+                    <label>Value</label>
+                    <input type="text" name="value" placeholder="192.168.4.49" required>
+                </div>
+                <div class="form-group">
+                    <label>TTL (seconds)</label>
+                    <input type="number" name="ttl" value="3600" min="60" max="86400">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('add-record-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Record</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="deploy-modal">
+        <div class="modal-content">
+            <h2>New Deployment</h2>
+            <form id="deploy-form">
+                <div class="form-group">
+                    <label>Domain</label>
+                    <select name="domain" id="deploy-domain-select" required>
+                        <option value="">Loading domains...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>GitHub Repository URL</label>
+                    <input type="url" name="repo_url" placeholder="https://github.com/org/repo" required>
+                </div>
+                <div class="form-group">
+                    <label>Branch</label>
+                    <input type="text" name="branch" value="main">
+                </div>
+                <div class="form-group">
+                    <label>Build Command (optional)</label>
+                    <input type="text" name="build_command" placeholder="npm run build">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('deploy-modal')">Cancel</button>
+                    <button type="submit" class="btn-primary">Deploy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="/js/app.js"></script>
 </body>
 </html>
