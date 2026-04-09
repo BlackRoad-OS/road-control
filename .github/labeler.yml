@@ -1,0 +1,26 @@
+# Label configuration for actions/labeler
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'public/**'
+
+css:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'public/css/**'
+
+javascript:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'public/js/**'
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '*.md'
+          - 'docs/**'

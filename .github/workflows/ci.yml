@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate project structure
+        run: node scripts/validate.js
+
+      - name: Check HTML syntax
+        run: |
+          # Install html-validate for proper HTML checking
+          npm install --no-save html-validate
+          npx html-validate public/index.html || true
+
+      - name: Check for broken links in HTML
+        run: |
+          # Verify all referenced assets exist
+          for file in $(grep -oP '(?:src|href)="(/[^"]+)"' public/index.html | grep -oP '/[^"]+'); do
+            if [ ! -f "public$file" ]; then
+              echo "ERROR: Missing asset: public$file"
+              exit 1
+            fi
+          done
+          echo "All asset references valid"
+
+      - name: Verify JavaScript syntax
+        run: node --check public/js/app.js

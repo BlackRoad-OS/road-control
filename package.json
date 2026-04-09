@@ -1,0 +1,16 @@
+{
+  "name": "road-control",
+  "version": "1.0.0",
+  "description": "BlackRoad Domain Registry - Control Panel",
+  "private": true,
+  "scripts": {
+    "start": "npx http-server public -p 8083 -c-1",
+    "serve": "npx http-server public -p 8083 -c-1 --cors",
+    "lint": "npx htmlhint public/index.html && npx csslint public/css/style.css --quiet",
+    "validate": "node scripts/validate.js",
+    "test": "node scripts/validate.js"
+  },
+  "keywords": ["blackroad", "domain-registry", "control-panel", "dns"],
+  "author": "BlackRoad OS, Inc.",
+  "license": "SEE LICENSE IN LICENSE"
+}
